@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=VT323&display=swap');
+
+@theme {
+  --font-retro: "VT323", monospace;
+  --font-mono: "Courier Prime", monospace;
+
+  --color-retro-bg: #e6e2d3; /* Warm Beige */
+  --color-retro-paper: #f4f1ea; /* Off-white paper */
+  --color-retro-dark: #2c1a0e; /* Dark Brown/Black */
+  --color-retro-primary: #cd5c08; /* Burnt Orange */
+  --color-retro-secondary: #6a9c89; /* Olive/Sage Green */
+  --color-retro-accent: #c1d0b5; /* Light Sage */
+  --color-retro-muted: #99958c; /* Grayish Beige */
+  --color-retro-red: #b91c1c; /* Faded Red */
+}
+
+@layer base {
+  body {
+    @apply font-mono bg-retro-bg text-retro-dark antialiased overflow-x-hidden;
+    background-image: radial-gradient(#d4cfc0 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-retro uppercase tracking-wide;
+  }
+}
+
+@layer components {
+  .retro-container {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  /* CRT Scanline Effect */
+  .scanlines {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0) 50%,
+      rgba(0,0,0,0.05) 50%,
+      rgba(0,0,0,0.05)
+    );
+    background-size: 100% 4px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Retro Card */
+  .retro-card {
+    @apply bg-retro-paper border-2 border-retro-dark p-6 relative;
+    box-shadow: 6px 6px 0px 0px var(--color-retro-dark);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .retro-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px 0px var(--color-retro-dark);
+  }
+
+  /* Retro Button */
+  .retro-btn, .retro-btn-secondary, .retro-btn-outline {
+    @apply px-6 py-3 font-retro text-xl border-2 border-retro-dark cursor-pointer transition-all active:scale-95 flex items-center justify-center gap-2;
+    box-shadow: 4px 4px 0px 0px var(--color-retro-dark);
+  }
+
+  .retro-btn:hover, .retro-btn-secondary:hover, .retro-btn-outline:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px 0px var(--color-retro-dark);
+    @apply brightness-110;
+  }
+
+  .retro-btn:active, .retro-btn-secondary:active, .retro-btn-outline:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px var(--color-retro-dark);
+  }
+
+  .retro-btn {
+    @apply bg-retro-primary text-white;
+  }
+
+  .retro-btn-secondary {
+    @apply bg-retro-secondary text-white;
+  }
+  
+  .retro-btn-outline {
+    @apply bg-transparent text-retro-dark hover:bg-retro-accent;
+  }
+
+  /* Retro Input */
+  .retro-input {
+    @apply w-full px-4 py-3 bg-retro-paper border-2 border-retro-dark font-mono text-retro-dark focus:outline-none focus:ring-2 focus:ring-retro-primary focus:border-transparent transition-all;
+    box-shadow: inset 2px 2px 0px 0px rgba(0,0,0,0.05);
+  }
+
+  /* Vignette */
+  .vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 150px rgba(0,0,0,0.15) inset;
+    pointer-events: none;
+    z-index: 9998;
+  }
+}
