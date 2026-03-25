@@ -78,7 +78,7 @@ This platform leverages the Sepolia testnet for development and testing, making 
    ```env
    VITE_PRIVATE_KEY=your_private_key_here
    VITE_SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YOUR-PROJECT-ID
-   VITE_CONTRACT_ADDRESS=0x309fbACdEFCDF33e28548bc49efa05E76d1b77C8
+   VITE_CONTRACT_ADDRESS=your_contract_address
    VITE_PINATA_API_KEY=your_api_key
    VITE_PINATA_SECRET_KEY=your_secret_key
    VITE_ETHERSCAN_API_KEY=your_etherscan_key
