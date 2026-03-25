@@ -206,6 +206,11 @@ While formal unit tests are configured via ESLint, perform these manual tests:
 4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## 👥 Contributors
+
+- Jitesh Bangera
+- Shubham Banduni
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
