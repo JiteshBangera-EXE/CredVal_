@@ -296,7 +296,10 @@ const Generate = () => {
                       {['retro', 'modern', 'classic'].map((t) => (
                         <button
                           key={t}
-                          onClick={() => setTemplate(t)}
+                          onClick={() => {
+                            setTemplate(t);
+                            setPdfBlob(null);
+                          }}
                           className={`py-2 px-1 font-mono text-xs border-2 transition-all ${
                             template === t 
                               ? 'bg-retro-primary text-white border-retro-dark' 
@@ -319,7 +322,10 @@ const Generate = () => {
                         className="w-full bg-[#fdfbf7] border-2 border-retro-dark p-3 font-mono text-sm focus:outline-none focus:border-retro-primary focus:shadow-[4px_4px_0px_0px_rgba(205,92,8,1)] transition-all"
                         placeholder={`ENTER ${field.toUpperCase()}...`}
                         value={formData[field]}
-                        onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+                        onChange={(e) => {
+                          setFormData({ ...formData, [field]: e.target.value });
+                          setPdfBlob(null);
+                        }}
                       />
                     </div>
                   ))}
@@ -395,10 +401,17 @@ const Generate = () => {
                   <div className="w-full flex justify-center pt-4">
                       <button 
                         onClick={() => {
-                          const blob = generatePDF();
-                          if (blob) {
-                            const url = URL.createObjectURL(blob);
-                            window.open(url, '_blank');
+                          // Use the exact blob generated during minting to ensure the IPFS hash matches perfectly
+                          const blobToDownload = pdfBlob || generatePDF();
+                          if (blobToDownload) {
+                            const url = URL.createObjectURL(blobToDownload);
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.download = `Certificate_${formData.certId}.pdf`;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            URL.revokeObjectURL(url);
                           }
                         }}
                         className="w-full bg-retro-primary text-white border-2 border-retro-dark px-6 py-3 font-retro text-lg flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_rgba(44,26,14,1)] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(44,26,14,1)] transition-all animate-pulse"

@@ -76,12 +76,31 @@ This platform leverages the Sepolia testnet for development and testing, making 
    
    Update the following variables in `.env`:
    ```env
-   VITE_PRIVATE_KEY=your_private_key_here
-   VITE_SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YOUR-PROJECT-ID
-   VITE_CONTRACT_ADDRESS=your_contract_address
+   VITE_PRIVATE_KEY=your_private_key_here 
+      MetaMask: https://metamask.io/
+
+   VITE_SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YOUR-PROJECT-ID  
+      Infura: https://app.infura.io/
+
+   VITE_CONTRACT_ADDRESS=your_contract_address 
+      cd credval
+      cd blockchain-dev
+      npx hardhat run scripts/deploy.js --network sepolia
+
+      Text  Deploying CredVal contract...
+            CredVal deployed to: 
+            0x1234............  <-- Copy this address
+            Waiting for block confirmations...
+            Verifying contract...
+
+
    VITE_PINATA_API_KEY=your_api_key
+      https://app.pinata.cloud/developers/api-keys
    VITE_PINATA_SECRET_KEY=your_secret_key
+      https://app.pinata.cloud/developers/api-keys
+
    VITE_ETHERSCAN_API_KEY=your_etherscan_key
+      https://etherscan.io/myapikey
    ```
 
 ## 🚀 Getting Started
